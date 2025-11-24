@@ -1,0 +1,196 @@
+═══════════════════════════════════════════════════════════════
+  INSTRUCTIONS DE DÉPLOIEMENT - PLATEFORME QR CODES
+  NOOAXIS & Wanda Success
+═══════════════════════════════════════════════════════════════
+
+📦 CONTENU DU PACKAGE :
+
+✅ FRONTEND (5 fichiers HTML) :
+   - qr-platform-dashboard.html    → Dashboard admin complet
+   - contact-form.html             → Formulaire de contact
+   - loummel-landing.html          → Landing page Loummel
+   - mobile-scanner.html           → Scanner QR mobile
+   - wheel-game.html               → Jeu-concours roue fortune
+
+✅ BACKEND (3 fichiers) :
+   - server.js                     → API REST Node.js
+   - package.json                  → Dépendances npm
+   - .env.example                  → Variables d'environnement
+
+✅ DOCUMENTATION :
+   - README.md                     → Guide d'installation
+   - INSTRUCTIONS_DEPLOYMENT.txt   → Ce fichier
+
+
+═══════════════════════════════════════════════════════════════
+  ÉTAPE 1 : UPLOAD SUR GITHUB
+═══════════════════════════════════════════════════════════════
+
+1. Extrayez le fichier ZIP sur votre ordinateur
+
+2. Allez sur : https://github.com/wandasuccess237/qr-platform
+
+3. Supprimez les anciens fichiers HTML (optionnel) ou gardez-les
+
+4. Cliquez sur "Add file" → "Upload files"
+
+5. Glissez-déposez TOUS les fichiers du ZIP :
+   ✓ Les 5 fichiers HTML
+   ✓ server.js
+   ✓ package.json
+   ✓ .env.example
+   ✓ README.md
+
+6. Cliquez "Commit changes"
+
+7. ✅ C'EST FAIT ! Vos fichiers sont sur GitHub
+
+
+═══════════════════════════════════════════════════════════════
+  ÉTAPE 2 : DÉPLOYER SUR RENDER
+═══════════════════════════════════════════════════════════════
+
+A. CRÉER LE WEB SERVICE
+------------------------
+1. Allez sur https://render.com
+
+2. Cliquez "New +" → "Web Service"
+
+3. Connectez votre repository GitHub : wandasuccess237/qr-platform
+
+4. Configuration :
+   - Name:           qr-platform
+   - Environment:    Node
+   - Build Command:  npm install
+   - Start Command:  npm start
+   - Instance Type:  Free
+
+5. Cliquez "Create Web Service"
+
+6. ⏳ Attendez 3-5 minutes (première installation)
+
+
+B. CRÉER LA BASE DE DONNÉES
+----------------------------
+1. Dans Render, cliquez "New +" → "PostgreSQL"
+
+2. Configuration :
+   - Name:  qr-platform-db
+   - Plan:  Free (90 jours)
+
+3. Cliquez "Create Database"
+
+4. Une fois créée, copiez "Internal Database URL"
+   Exemple : postgresql://user:pass@host:5432/db
+
+
+C. CONNECTER LA BASE DE DONNÉES
+--------------------------------
+1. Retournez dans votre Web Service
+
+2. Menu gauche → "Environment"
+
+3. Cliquez "+ Add Environment Variable"
+
+4. Remplissez :
+   Key:    DATABASE_URL
+   Value:  [Collez l'URL copiée]
+
+5. Cliquez "Save Changes"
+
+6. ⏳ L'application redémarre (30 secondes)
+
+
+═══════════════════════════════════════════════════════════════
+  ÉTAPE 3 : TESTER VOTRE PLATEFORME
+═══════════════════════════════════════════════════════════════
+
+1. Votre URL sera : https://qr-platform.onrender.com
+   (ou le nom que vous avez choisi)
+
+2. Ouvrez l'URL dans votre navigateur
+
+3. Testez :
+   ✓ Dashboard : https://votre-url.onrender.com/qr-platform-dashboard.html
+   ✓ Formulaire : https://votre-url.onrender.com/contact-form.html
+   ✓ Loummel : https://votre-url.onrender.com/loummel-landing.html
+   ✓ Jeu : https://votre-url.onrender.com/wheel-game.html
+
+4. API Backend : https://votre-url.onrender.com/api/contacts
+
+
+═══════════════════════════════════════════════════════════════
+  VÉRIFICATION : ÇA MARCHE ?
+═══════════════════════════════════════════════════════════════
+
+✅ SI TOUT VA BIEN :
+   - Le dashboard s'affiche
+   - Vous pouvez créer des QR codes
+   - Le formulaire enregistre les contacts
+   - Les logs Render montrent : "Server running on port XXX"
+   - Status = Live (vert)
+
+❌ SI ERREUR "Impossible d'obtenir /" :
+   - Vérifiez les logs Render (menu Logs)
+   - Vérifiez que server.js et package.json sont sur GitHub
+   - Vérifiez Build Command = npm install
+   - Vérifiez Start Command = npm start
+   - Contactez-nous (voir ci-dessous)
+
+
+═══════════════════════════════════════════════════════════════
+  CONFIGURATION AVANCÉE (OPTIONNEL)
+═══════════════════════════════════════════════════════════════
+
+Pour activer les emails et CRM :
+
+1. Créez un compte SendGrid (gratuit) : sendgrid.com
+
+2. Dans Render > Environment, ajoutez :
+   - SENDGRID_API_KEY = votre_clé_ici
+   - FROM_EMAIL = noreply@votre-domaine.com
+
+3. Pour HubSpot/Salesforce, ajoutez leurs clés API
+
+
+═══════════════════════════════════════════════════════════════
+  BESOIN D'AIDE ?
+═══════════════════════════════════════════════════════════════
+
+📱 WhatsApp : +237 694 017 044
+📧 Email : wandasuccess237@gmail.com
+
+Nous répondons en moins de 2 heures !
+
+Si vous avez une erreur, envoyez-nous :
+1. Capture d'écran de l'erreur
+2. Les 20 dernières lignes des Logs Render
+3. Capture de votre configuration Render
+
+Nous vous aiderons immédiatement ! 🚀
+
+
+═══════════════════════════════════════════════════════════════
+  NOTES IMPORTANTES
+═══════════════════════════════════════════════════════════════
+
+⚠️ GRATUIT avec limitations :
+   - Render Free : Service en veille après 15 min d'inactivité
+   - PostgreSQL : 90 jours gratuits (renouvelable)
+   - Suffisant pour 1-2 foires par mois
+
+💰 Pour usage intensif :
+   - Render Starter : 7$/mois (pas de veille)
+   - PostgreSQL Pro : 7$/mois (illimité)
+
+🌐 Domaine personnalisé :
+   - Par défaut : qr-platform.onrender.com
+   - Avec domaine : qr.nooaxis-wanda.com (10€/an)
+
+
+═══════════════════════════════════════════════════════════════
+  BON SUCCÈS AVEC VOS FOIRES ! 🎉
+═══════════════════════════════════════════════════════════════
+
+Guide créé par : NOOAXIS Stratégie-Accompagnement & Wanda Success
+Date : 24 novembre 2025
