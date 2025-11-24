@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roue de la Fortune - Wanda Success</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .gradient-gold { background: linear-gradient(135deg, #C59763 0%, #785A3C 100%); }
+        
+        #wheel-canvas {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(var(--rotation)); }
+        }
+        
+        .spinning {
+            animation: spin var(--duration) cubic-bezier(0.17, 0.67, 0.12, 0.99);
+        }
+        
+        @keyframes confetti {
+            0% { transform: translateY(0) rotateZ(0deg); opacity: 1; }
+            100% { transform: translateY(1000px) rotateZ(720deg); opacity: 0; }
+        }
+        
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            animation: confetti 3s ease-out forwards;
+        }
+        
+        .pulse-gold {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-yellow-50 to-orange-50 min-h-screen">
+    
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+        
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <div class="inline-block gradient-gold text-white px-6 py-3 rounded-full mb-4">
+                <span class="text-lg font-semibold">Wanda Success</span>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-2">
+                🎡 Tournez la Roue !
+            </h1>
+            <p class="text-xl text-gray-600">
+                Tentez votre chance et gagnez des cadeaux exclusifs
+            </p>
+        </div>
+
+        <!-- Main Game Container -->
+        <div id="game-container">
+            
+            <!-- Registration Form -->
+            <div id="registration-form" class="bg-white rounded-3xl shadow-2xl p-8 mb-8">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">
+                    Inscrivez-vous pour jouer !
+                </h2>
+                
+                <form id="player-form" class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Nom Complet *</label>
+                        <input type="text" name="name" required 
+                               class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-yellow-500 focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Email *</label>
+                        <input type="email" name="email" required 
+                               class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-yellow-500 focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Téléphone *</label>
+                        <input type="tel" name="phone" required 
+                               class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-yellow-500 focus:outline-none">
+                    </div>
+                    
+                    <label class="flex items-start">
+                        <input type="checkbox" name="consent" required class="w-5 h-5 text-yellow-600 rounded mt-1 mr-3">
+                        <span class="text-sm text-gray-600">
+                            J'accepte de participer au jeu et de recevoir mon cadeau. *
+                        </span>
+                    </label>
+                    
+                    <button type="submit" class="w-full gradient-gold text-white py-4 rounded-lg font-bold text-lg hover:opacity-90 transition">
+                        🎯 Jouer Maintenant !
+                    </button>
+                </form>
+            </div>
+
+            <!-- Wheel Game -->
+            <div id="wheel-game" class="hidden">
+                <div class="bg-white rounded-3xl shadow-2xl p-8 mb-8">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-2 text-center">
+                        Bonne chance, <span id="player-name" class="text-yellow-700"></span> !
+                    </h2>
+                    <p class="text-center text-gray-600 mb-6">Cliquez sur le bouton pour faire tourner la roue</p>
+                    
+                    <!-- Wheel Container -->
+                    <div class="relative mb-8">
+                        <!-- Arrow Pointer -->
+                        <div class="absolute top-0 left-1/2 transform -translate-x-1/2 z-10">
+                            <div class="w-0 h-0 border-l-[20px] border-l-transparent border-r-[20px] border-r-transparent border-t-[40px] border-t-red-600"></div>
+                        </div>
+                        
+                        <!-- Wheel -->
+                        <canvas id="wheel-canvas" width="400" height="400"></canvas>
+                    </div>
+                    
+                    <!-- Spin Button -->
+                    <button id="spin-button" onclick="spinWheel()" 
+                            class="w-full gradient-gold text-white py-4 rounded-lg font-bold text-xl hover:opacity-90 transition pulse-gold">
+                        🎰 TOURNER LA ROUE
+                    </button>
+                    
+                    <p class="text-center text-sm text-gray-500 mt-4">
+                        ⏰ Vous avez 1 essai
+                    </p>
+                </div>
+            </div>
+
+            <!-- Result Display -->
+            <div id="result-display" class="hidden">
+                <div class="bg-white rounded-3xl shadow-2xl p-8 text-center">
+                    <div id="prize-icon" class="text-8xl mb-4">🎁</div>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">
+                        Félicitations !
+                    </h2>
+                    <div class="bg-yellow-50 border-2 border-yellow-200 rounded-xl p-6 mb-6">
+                        <p class="text-xl text-gray-700 mb-2">Vous avez gagné :</p>
+                        <p id="prize-text" class="text-3xl font-bold text-yellow-700"></p>
+                    </div>
+                    
+                    <div class="space-y-3 mb-6">
+                        <div class="flex items-center justify-center bg-green-50 p-4 rounded-lg">
+                            <svg class="w-6 h-6 text-green-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <span class="text-gray-700">Un email de confirmation vous sera envoyé</span>
+                        </div>
+                        <div class="flex items-center justify-center bg-blue-50 p-4 rounded-lg">
+                            <svg class="w-6 h-6 text-blue-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <span class="text-gray-700">Présentez-vous à notre stand pour récupérer votre cadeau</span>
+                        </div>
+                    </div>
+
+                    <div class="space-y-3">
+                        <a href="loummel-landing.html" class="block w-full gradient-gold text-white py-3 rounded-lg font-semibold hover:opacity-90 transition">
+                            🎯 Découvrir Loummel
+                        </a>
+                        <a href="contact-form.html" class="block w-full border-2 border-yellow-600 text-yellow-700 py-3 rounded-lg font-semibold hover:bg-yellow-50 transition">
+                            📝 Nous Contacter
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Stats -->
+        <div class="mt-8 bg-white rounded-xl shadow-md p-6">
+            <h3 class="text-lg font-bold text-gray-800 mb-4 text-center">🏆 Participations Aujourd'hui</h3>
+            <div class="grid grid-cols-3 gap-4 text-center">
+                <div>
+                    <div class="text-3xl font-bold text-yellow-700" id="total-plays">342</div>
+                    <div class="text-sm text-gray-600">Joueurs</div>
+                </div>
+                <div>
+                    <div class="text-3xl font-bold text-green-600" id="total-winners">289</div>
+                    <div class="text-sm text-gray-600">Gagnants</div>
+                </div>
+                <div>
+                    <div class="text-3xl font-bold text-yellow-700">84%</div>
+                    <div class="text-sm text-gray-600">Taux de gain</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const prizes = [
+            { text: "Consultation Gratuite", color: "#EF4444", icon: "🎯", value: 150 },
+            { text: "E-book Premium", color: "#F59E0B", icon: "📚", value: 30 },
+            { text: "Réduction 50% Loummel", color: "#10B981", icon: "💰", value: 100 },
+            { text: "Formation Offerte", color: "#3B82F6", icon: "🎓", value: 200 },
+            { text: "Goodies Exclusifs", color: "#8B5CF6", icon: "🎁", value: 20 },
+            { text: "1 Mois Gratuit Loummel", color: "#EC4899", icon: "🚀", value: 50 },
+            { text: "Pack Starter", color: "#14B8A6", icon: "📦", value: 75 },
+            { text: "Audit Gratuit", color: "#F97316", icon: "🔍", value: 180 }
+        ];
+
+        let canvas, ctx;
+        let currentRotation = 0;
+        let isSpinning = false;
+        let playerData = null;
+
+        // Initialize canvas
+        window.addEventListener('load', function() {
+            canvas = document.getElementById('wheel-canvas');
+            ctx = canvas.getContext('2d');
+            drawWheel();
+            updateStats();
+        });
+
+        // Form submission
+        document.getElementById('player-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            playerData = Object.fromEntries(formData);
+            playerData.timestamp = new Date().toISOString();
+            
+            document.getElementById('registration-form').classList.add('hidden');
+            document.getElementById('wheel-game').classList.remove('hidden');
+            document.getElementById('player-name').textContent = playerData.name;
+            
+            // Save to localStorage
+            const players = JSON.parse(localStorage.getItem('wheelPlayers') || '[]');
+            players.push(playerData);
+            localStorage.setItem('wheelPlayers', JSON.stringify(players));
+        });
+
+        function drawWheel() {
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+            const radius = 180;
+            const numSegments = prizes.length;
+            const anglePerSegment = (2 * Math.PI) / numSegments;
+
+            // Draw segments
+            prizes.forEach((prize, index) => {
+                const startAngle = currentRotation + (index * anglePerSegment);
+                const endAngle = startAngle + anglePerSegment;
+
+                // Draw segment
+                ctx.beginPath();
+                ctx.moveTo(centerX, centerY);
+                ctx.arc(centerX, centerY, radius, startAngle, endAngle);
+                ctx.closePath();
+                ctx.fillStyle = prize.color;
+                ctx.fill();
+                ctx.strokeStyle = '#ffffff';
+                ctx.lineWidth = 3;
+                ctx.stroke();
+
+                // Draw text
+                ctx.save();
+                ctx.translate(centerX, centerY);
+                ctx.rotate(startAngle + anglePerSegment / 2);
+                ctx.textAlign = 'center';
+                ctx.fillStyle = '#ffffff';
+                ctx.font = 'bold 14px Arial';
+                
+                // Icon
+                ctx.font = '24px Arial';
+                ctx.fillText(prize.icon, radius * 0.7, -5);
+                
+                // Text
+                ctx.font = 'bold 12px Arial';
+                const words = prize.text.split(' ');
+                words.forEach((word, i) => {
+                    ctx.fillText(word, radius * 0.7, 15 + (i * 15));
+                });
+                
+                ctx.restore();
+            });
+
+            // Draw center circle
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, 30, 0, 2 * Math.PI);
+            ctx.fillStyle = '#785A3C';
+            ctx.fill();
+            ctx.strokeStyle = '#ffffff';
+            ctx.lineWidth = 5;
+            ctx.stroke();
+        }
+
+        function spinWheel() {
+            if (isSpinning) return;
+            
+            isSpinning = true;
+            const spinButton = document.getElementById('spin-button');
+            spinButton.disabled = true;
+            spinButton.textContent = '🎰 ROTATION...';
+            spinButton.classList.remove('pulse-gold');
+
+            // Random prize selection
+            const prizeIndex = Math.floor(Math.random() * prizes.length);
+            const baseRotations = 5; // Number of full rotations
+            const anglePerSegment = (2 * Math.PI) / prizes.length;
+            const targetAngle = (baseRotations * 2 * Math.PI) + (prizeIndex * anglePerSegment) + (anglePerSegment / 2);
+            
+            const duration = 4000; // 4 seconds
+            const startTime = Date.now();
+            const startRotation = currentRotation;
+
+            function animate() {
+                const elapsed = Date.now() - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                
+                // Easing function
+                const easeOut = 1 - Math.pow(1 - progress, 3);
+                
+                currentRotation = startRotation + (targetAngle * easeOut);
+                
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                drawWheel();
+                
+                if (progress < 1) {
+                    requestAnimationFrame(animate);
+                } else {
+                    isSpinning = false;
+                    showResult(prizes[prizeIndex]);
+                }
+            }
+            
+            animate();
+        }
+
+        function showResult(prize) {
+            // Create confetti
+            createConfetti();
+            
+            // Save result
+            playerData.prize = prize.text;
+            playerData.prizeValue = prize.value;
+            
+            const results = JSON.parse(localStorage.getItem('wheelResults') || '[]');
+            results.push(playerData);
+            localStorage.setItem('wheelResults', JSON.stringify(results));
+            
+            // Show result
+            setTimeout(() => {
+                document.getElementById('wheel-game').classList.add('hidden');
+                document.getElementById('result-display').classList.remove('hidden');
+                document.getElementById('prize-icon').textContent = prize.icon;
+                document.getElementById('prize-text').textContent = prize.text;
+                
+                updateStats();
+                
+                // Send to server
+                console.log('Winner data:', playerData);
+                // fetch('/api/wheel/winner', { method: 'POST', body: JSON.stringify(playerData) });
+            }, 1000);
+        }
+
+        function createConfetti() {
+            const colors = ['#EF4444', '#F59E0B', '#10B981', '#3B82F6', '#8B5CF6', '#EC4899'];
+            
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * window.innerWidth + 'px';
+                confetti.style.top = '-20px';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.animationDelay = Math.random() * 0.5 + 's';
+                confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                document.body.appendChild(confetti);
+                
+                setTimeout(() => confetti.remove(), 5000);
+            }
+        }
+
+        function updateStats() {
+            const results = JSON.parse(localStorage.getItem('wheelResults') || '[]');
+            const baseCount = 342;
+            const baseWinners = 289;
+            
+            document.getElementById('total-plays').textContent = baseCount + results.length;
+            document.getElementById('total-winners').textContent = baseWinners + results.length;
+        }
+
+        // Update stats every 10 seconds
+        setInterval(() => {
+            const current = parseInt(document.getElementById('total-plays').textContent);
+            if (Math.random() > 0.5) {
+                document.getElementById('total-plays').textContent = current + 1;
+                document.getElementById('total-winners').textContent = parseInt(document.getElementById('total-winners').textContent) + (Math.random() > 0.2 ? 1 : 0);
+            }
+        }, 10000);
+    </script>
+</body>
+</html>

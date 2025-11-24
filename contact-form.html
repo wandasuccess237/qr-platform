@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Wanda Success</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .wanda-gold-bg { background: linear-gradient(135deg, #C59763 0%, #785A3C 100%); }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .success-animation {
+            animation: scaleIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        @keyframes scaleIn {
+            from { transform: scale(0); }
+            to { transform: scale(1); }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-yellow-50 to-orange-50 min-h-screen">
+    
+    <div class="container mx-auto px-4 py-8 max-w-2xl">
+        
+        <!-- Header -->
+        <div class="text-center mb-8 fade-in">
+            <div class="inline-block wanda-gold-bg text-white px-6 py-3 rounded-full mb-4">
+                <span class="text-lg font-semibold">Wanda Success</span>
+            </div>
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-2">Restons en Contact !</h1>
+            <p class="text-gray-600">Remplissez ce formulaire en 30 secondes et découvrez comment nous pouvons vous aider</p>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="mb-8">
+            <div class="flex justify-between text-xs text-gray-500 mb-2">
+                <span>Progression</span>
+                <span id="progress-text">0%</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-2">
+                <div id="progress-bar" class="wanda-gold-bg h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
+            </div>
+        </div>
+
+        <!-- Form Container -->
+        <div id="form-container" class="bg-white rounded-2xl shadow-xl p-8 fade-in">
+            <form id="contact-form" class="space-y-6">
+                
+                <!-- Personal Info -->
+                <div class="space-y-4">
+                    <h3 class="text-xl font-bold text-gray-800 flex items-center">
+                        <span class="wanda-gold-bg text-white w-8 h-8 rounded-full flex items-center justify-center mr-3">1</span>
+                        Vos Informations
+                    </h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Prénom *</label>
+                            <input type="text" name="firstname" required 
+                                   class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-yellow-500 focus:outline-none transition"
+                                   placeholder="Jean">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Nom *</label>
+                            <input type="text" name="lastname" required 
+                                   class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-yellow-500 focus:outline-none transition"
+                                   placeholder="Dupont">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Email *</label>
+                        <input type="email" name="email" required 
+                               class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-yellow-500 focus:outline-none transition"
+                               placeholder="jean.dupont@entreprise.com">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Téléphone *</label>
+                        <input type="tel" name="phone" required 
+                               class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-yellow-500 focus:outline-none transition"
+                               placeholder="+237 6XX XX XX XX">
+                    </div>
+                </div>
+
+                <!-- Professional Info -->
+                <div class="space-y-4 pt-4 border-t border-gray-200">
+                    <h3 class="text-xl font-bold text-gray-800 flex items-center">
+                        <span class="wanda-gold-bg text-white w-8 h-8 rounded-full flex items-center justify-center mr-3">2</span>
+                        Votre Entreprise
+                    </h3>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Nom de l'entreprise *</label>
+                        <input type="text" name="company" required 
+                               class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-yellow-500 focus:outline-none transition"
+                               placeholder="Votre Entreprise SARL">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Votre fonction *</label>
+                        <input type="text" name="position" required 
+                               class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-yellow-500 focus:outline-none transition"
+                               placeholder="Ex: Directeur Commercial, Entrepreneur">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Secteur d'activité *</label>
+                        <select name="sector" required 
+                                class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-yellow-500 focus:outline-none transition">
+                            <option value="">Sélectionnez...</option>
+                            <option value="tech">Technologie / IT</option>
+                            <option value="commerce">Commerce / Distribution</option>
+                            <option value="services">Services aux entreprises</option>
+                            <option value="industrie">Industrie / Production</option>
+                            <option value="sante">Santé / Bien-être</option>
+                            <option value="education">Éducation / Formation</option>
+                            <option value="agriculture">Agriculture / Agroalimentaire</option>
+                            <option value="btp">BTP / Construction</option>
+                            <option value="autre">Autre</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Taille de l'entreprise</label>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
+                            <label class="flex items-center justify-center p-3 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-yellow-500 transition">
+                                <input type="radio" name="size" value="tpe" class="mr-2">
+                                <span class="text-sm">TPE (1-9)</span>
+                            </label>
+                            <label class="flex items-center justify-center p-3 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-yellow-500 transition">
+                                <input type="radio" name="size" value="pme" class="mr-2">
+                                <span class="text-sm">PME (10-49)</span>
+                            </label>
+                            <label class="flex items-center justify-center p-3 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-yellow-500 transition">
+                                <input type="radio" name="size" value="eti" class="mr-2">
+                                <span class="text-sm">ETI (50-249)</span>
+                            </label>
+                            <label class="flex items-center justify-center p-3 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-yellow-500 transition">
+                                <input type="radio" name="size" value="ge" class="mr-2">
+                                <span class="text-sm">GE (250+)</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Needs -->
+                <div class="space-y-4 pt-4 border-t border-gray-200">
+                    <h3 class="text-xl font-bold text-gray-800 flex items-center">
+                        <span class="wanda-gold-bg text-white w-8 h-8 rounded-full flex items-center justify-center mr-3">3</span>
+                        Vos Besoins
+                    </h3>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-3">Qu'est-ce qui vous intéresse ? (plusieurs choix possibles)</label>
+                        <div class="space-y-2">
+                            <label class="flex items-center p-3 border-2 border-gray-200 rounded-lg cursor-pointer hover:bg-yellow-50 transition">
+                                <input type="checkbox" name="interests" value="strategie" class="w-5 h-5 text-yellow-600 rounded">
+                                <span class="ml-3 text-gray-700">Stratégie d'entreprise</span>
+                            </label>
+                            <label class="flex items-center p-3 border-2 border-gray-200 rounded-lg cursor-pointer hover:bg-yellow-50 transition">
+                                <input type="checkbox" name="interests" value="accompagnement" class="w-5 h-5 text-yellow-600 rounded">
+                                <span class="ml-3 text-gray-700">Accompagnement personnalisé</span>
+                            </label>
+                            <label class="flex items-center p-3 border-2 border-gray-200 rounded-lg cursor-pointer hover:bg-yellow-50 transition">
+                                <input type="checkbox" name="interests" value="loummel" class="w-5 h-5 text-yellow-600 rounded">
+                                <span class="ml-3 text-gray-700">Marketplace Loummel</span>
+                            </label>
+                            <label class="flex items-center p-3 border-2 border-gray-200 rounded-lg cursor-pointer hover:bg-yellow-50 transition">
+                                <input type="checkbox" name="interests" value="digital" class="w-5 h-5 text-yellow-600 rounded">
+                                <span class="ml-3 text-gray-700">Transformation digitale</span>
+                            </label>
+                            <label class="flex items-center p-3 border-2 border-gray-200 rounded-lg cursor-pointer hover:bg-yellow-50 transition">
+                                <input type="checkbox" name="interests" value="formation" class="w-5 h-5 text-yellow-600 rounded">
+                                <span class="ml-3 text-gray-700">Formation</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Êtes-vous intéressé par Loummel ?</label>
+                        <div class="grid grid-cols-3 gap-2">
+                            <label class="flex items-center justify-center p-3 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-yellow-500 transition">
+                                <input type="radio" name="loummel_interest" value="yes" class="mr-2">
+                                <span class="text-sm">Oui ✓</span>
+                            </label>
+                            <label class="flex items-center justify-center p-3 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-yellow-500 transition">
+                                <input type="radio" name="loummel_interest" value="maybe" class="mr-2">
+                                <span class="text-sm">Peut-être</span>
+                            </label>
+                            <label class="flex items-center justify-center p-3 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-yellow-500 transition">
+                                <input type="radio" name="loummel_interest" value="no" class="mr-2">
+                                <span class="text-sm">Non</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Quand souhaitez-vous être recontacté ?</label>
+                        <select name="callback" required 
+                                class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-yellow-500 focus:outline-none transition">
+                            <option value="urgent">Urgent (aujourd'hui)</option>
+                            <option value="48h">Sous 48h</option>
+                            <option value="week">Sous 1 semaine</option>
+                            <option value="no">Pas de rappel nécessaire</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Message ou question (optionnel)</label>
+                        <textarea name="message" rows="3" 
+                                  class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-yellow-500 focus:outline-none transition"
+                                  placeholder="Parlez-nous de votre projet ou posez vos questions..."></textarea>
+                    </div>
+                </div>
+
+                <!-- RGPD -->
+                <div class="space-y-3 pt-4 border-t border-gray-200">
+                    <label class="flex items-start">
+                        <input type="checkbox" name="consent_data" required class="w-5 h-5 text-yellow-600 rounded mt-1">
+                        <span class="ml-3 text-sm text-gray-600">
+                            J'accepte que mes données soient collectées et traitées par Wanda Success et Wanda Success pour répondre à ma demande. *
+                        </span>
+                    </label>
+                    <label class="flex items-start">
+                        <input type="checkbox" name="consent_marketing" class="w-5 h-5 text-yellow-600 rounded mt-1">
+                        <span class="ml-3 text-sm text-gray-600">
+                            J'accepte de recevoir des communications marketing sur les services et offres.
+                        </span>
+                    </label>
+                    <p class="text-xs text-gray-500 ml-8">
+                        Conformément au RGPD, vous pouvez à tout moment accéder, modifier ou supprimer vos données.
+                    </p>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" 
+                        class="w-full wanda-gold-bg text-white py-4 rounded-lg font-semibold text-lg hover:opacity-90 transition transform hover:scale-105 active:scale-95">
+                    🚀 Envoyer ma demande
+                </button>
+
+                <p class="text-center text-sm text-gray-500">
+                    ⏱ Remplissage en moins de 45 secondes
+                </p>
+            </form>
+        </div>
+
+        <!-- Success Message (Hidden by default) -->
+        <div id="success-message" class="hidden bg-white rounded-2xl shadow-xl p-8 text-center">
+            <div class="success-animation mb-6">
+                <div class="inline-block w-20 h-20 bg-green-100 rounded-full flex items-center justify-center">
+                    <svg class="w-12 h-12 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                </div>
+            </div>
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Merci !</h2>
+            <p class="text-lg text-gray-600 mb-6">
+                Votre demande a été enregistrée avec succès.<br>
+                Nous vous contacterons très bientôt !
+            </p>
+            <div class="space-y-3 mb-6">
+                <div class="flex items-center justify-center text-left bg-yellow-50 p-4 rounded-lg">
+                    <svg class="w-6 h-6 text-yellow-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                    </svg>
+                    <span class="text-gray-700">Un email de confirmation vous a été envoyé</span>
+                </div>
+            </div>
+            
+            <div class="space-y-3">
+                <a href="loummel-landing.html" class="block w-full wanda-gold-bg text-white py-3 rounded-lg font-semibold hover:opacity-90 transition">
+                    🎯 Découvrir Loummel
+                </a>
+                <a href="#" onclick="window.location.reload()" class="block w-full border-2 border-gray-300 text-gray-700 py-3 rounded-lg font-semibold hover:bg-gray-50 transition">
+                    Nouveau formulaire
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const form = document.getElementById('contact-form');
+        const formContainer = document.getElementById('form-container');
+        const successMessage = document.getElementById('success-message');
+        const progressBar = document.getElementById('progress-bar');
+        const progressText = document.getElementById('progress-text');
+
+        // Calculate and update progress
+        function updateProgress() {
+            const inputs = form.querySelectorAll('input[required], select[required], textarea[required]');
+            let filled = 0;
+            
+            inputs.forEach(input => {
+                if (input.type === 'checkbox') {
+                    if (input.checked) filled++;
+                } else if (input.type === 'radio') {
+                    if (document.querySelector(`input[name="${input.name}"]:checked`)) {
+                        filled++;
+                    }
+                } else if (input.value.trim() !== '') {
+                    filled++;
+                }
+            });
+            
+            const progress = Math.round((filled / inputs.length) * 100);
+            progressBar.style.width = progress + '%';
+            progressText.textContent = progress + '%';
+        }
+
+        // Add event listeners to all form inputs
+        form.querySelectorAll('input, select, textarea').forEach(element => {
+            element.addEventListener('input', updateProgress);
+            element.addEventListener('change', updateProgress);
+        });
+
+        // Form submission
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Collect form data
+            const formData = new FormData(form);
+            const data = {};
+            
+            // Handle regular fields
+            for (let [key, value] of formData.entries()) {
+                if (key === 'interests') {
+                    if (!data.interests) data.interests = [];
+                    data.interests.push(value);
+                } else {
+                    data[key] = value;
+                }
+            }
+            
+            // Add metadata
+            data.timestamp = new Date().toISOString();
+            data.source = 'QR Code Foire';
+            data.status = data.callback === 'urgent' ? 'hot' : (data.callback === '48h' ? 'warm' : 'cold');
+            
+            console.log('Contact Data:', data);
+            
+            // Simulate API call
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            
+            // Show success message
+            formContainer.classList.add('hidden');
+            successMessage.classList.remove('hidden');
+            
+            // Send confirmation email (simulated)
+            console.log('Sending confirmation email to:', data.email);
+            
+            // If interested in Loummel, could redirect after a delay
+            if (data.loummel_interest === 'yes') {
+                console.log('User interested in Loummel - could redirect or show special offer');
+            }
+            
+            // In real implementation, send to backend:
+            // fetch('/api/contacts', {
+            //     method: 'POST',
+            //     headers: { 'Content-Type': 'application/json' },
+            //     body: JSON.stringify(data)
+            // });
+        });
+
+        // Auto-save to localStorage (optional)
+        function saveToLocalStorage() {
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData);
+            localStorage.setItem('contactForm', JSON.stringify(data));
+        }
+
+        // Load from localStorage on page load
+        window.addEventListener('load', function() {
+            const saved = localStorage.getItem('contactForm');
+            if (saved) {
+                const data = JSON.parse(saved);
+                for (let [key, value] of Object.entries(data)) {
+                    const input = form.querySelector(`[name="${key}"]`);
+                    if (input) input.value = value;
+                }
+                updateProgress();
+            }
+        });
+
+        // Save every 5 seconds
+        setInterval(saveToLocalStorage, 5000);
+    </script>
+</body>
+</html>

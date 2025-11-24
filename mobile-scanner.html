@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Scanner Mobile</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/html5-qrcode"></script>
+    <style>
+        .gradient-gold { background: linear-gradient(135deg, #C59763 0%, #785A3C 100%); }
+        #reader { border: 3px solid #C59763; border-radius: 1rem; }
+    </style>
+</head>
+<body class="bg-gray-900 text-white">
+    <header class="gradient-gold p-4">
+        <h1 class="text-xl font-bold">QR Scanner</h1>
+    </header>
+    <main class="p-4">
+        <div id="reader" class="mb-4"></div>
+        <button onclick="startScan()" class="w-full gradient-gold py-3 rounded-lg font-bold">Démarrer</button>
+        <div id="results" class="mt-4"></div>
+    </main>
+    <script>
+        let scanner;
+        function startScan() {
+            scanner = new Html5Qrcode("reader");
+            scanner.start({ facingMode: "environment" }, { fps: 10, qrbox: 250 }, 
+                text => alert("Scanné: " + text)
+            );
+        }
+    </script>
+</body>
+</html>
