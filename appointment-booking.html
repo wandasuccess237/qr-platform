@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prendre Rendez-vous - Wanda Success</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .wanda-gold { color: #C59763; }
+        .gradient-gold { background: linear-gradient(135deg, #C59763 0%, #785A3C 100%); }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in { animation: fadeIn 0.6s ease-out; }
+        .time-slot { transition: all 0.3s ease; }
+        .time-slot:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(197, 151, 99, 0.3);
+        }
+        .time-slot.selected {
+            background: linear-gradient(135deg, #C59763 0%, #785A3C 100%);
+            color: white;
+            border-color: #C59763;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    
+    <header class="gradient-gold text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <h1 class="text-3xl md:text-4xl font-bold text-center">📅 Prendre Rendez-vous</h1>
+            <p class="text-center mt-2 text-lg opacity-90">Réservez un créneau avec notre équipe</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8 max-w-4xl">
+        <div class="mb-8 fade-in">
+            <div class="flex items-center justify-between mb-2">
+                <span class="text-sm font-medium" id="step-1-label">1. Informations</span>
+                <span class="text-sm font-medium" id="step-2-label">2. Date & Heure</span>
+                <span class="text-sm font-medium" id="step-3-label">3. Confirmation</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-3">
+                <div id="progress-bar" class="gradient-gold h-3 rounded-full transition-all duration-500" style="width: 33.33%"></div>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-xl p-8 fade-in">
+            <div id="step-1" class="step-content">
+                <h2 class="text-2xl font-bold wanda-gold mb-6">📝 Vos informations</h2>
+                
+                <div class="space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Prénom *</label>
+                            <input type="text" id="prenom" required class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-yellow-500 focus:ring-2 focus:ring-yellow-200 transition" placeholder="Jean">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Nom *</label>
+                            <input type="text" id="nom" required class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-yellow-500 focus:ring-2 focus:ring-yellow-200 transition" placeholder="Dupont">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Email *</label>
+                        <input type="email" id="email" required class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-yellow-500 focus:ring-2 focus:ring-yellow-200 transition" placeholder="jean.dupont@email.com">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Téléphone / WhatsApp *</label>
+                        <input type="tel" id="telephone" required class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-yellow-500 focus:ring-2 focus:ring-yellow-200 transition" placeholder="+237 XXX XXX XXX">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Entreprise / Organisation</label>
+                        <input type="text" id="entreprise" class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-yellow-500 focus:ring-2 focus:ring-yellow-200 transition" placeholder="Nom de votre entreprise">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Objet du rendez-vous *</label>
+                        <select id="objet" required class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-yellow-500 focus:ring-2 focus:ring-yellow-200 transition">
+                            <option value="">-- Sélectionnez --</option>
+                            <option value="inscription-loummel">Inscription Marketplace Loummel</option>
+                            <option value="solutions-digitales">Solutions Digitales</option>
+                            <option value="consultation-strategie">Consultation Stratégie Business</option>
+                            <option value="formation">Formation & Accompagnement</option>
+                            <option value="partenariat">Opportunité de Partenariat</option>
+                            <option value="autre">Autre (précisez ci-dessous)</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Message / Détails</label>
+                        <textarea id="message" rows="4" class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-yellow-500 focus:ring-2 focus:ring-yellow-200 transition" placeholder="Décrivez brièvement l'objet de votre rendez-vous..."></textarea>
+                    </div>
+                </div>
+
+                <button onclick="nextStep(2)" class="w-full mt-6 gradient-gold text-white py-4 px-6 rounded-xl font-bold text-lg hover:shadow-2xl transform hover:scale-105 transition duration-300">
+                    Suivant : Choisir une date →
+                </button>
+            </div>
+
+            <div id="step-2" class="step-content hidden">
+                <h2 class="text-2xl font-bold wanda-gold mb-6">📅 Choisissez votre créneau</h2>
+                
+                <div class="mb-8">
+                    <label class="block text-sm font-medium text-gray-700 mb-3">Sélectionnez une date :</label>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3" id="date-options"></div>
+                </div>
+
+                <div class="mb-8">
+                    <label class="block text-sm font-medium text-gray-700 mb-3">Créneaux disponibles :</label>
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-3" id="time-slots"></div>
+                </div>
+
+                <div class="mb-6">
+                    <label class="block text-sm font-medium text-gray-700 mb-3">Mode de rendez-vous préféré :</label>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                        <label class="flex items-center p-4 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-yellow-500 transition">
+                            <input type="radio" name="mode" value="visio" class="mr-3">
+                            <div>
+                                <span class="font-bold">📹 Visioconférence</span>
+                                <p class="text-xs text-gray-600">Zoom / Google Meet</p>
+                            </div>
+                        </label>
+                        <label class="flex items-center p-4 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-yellow-500 transition">
+                            <input type="radio" name="mode" value="presentiel" class="mr-3">
+                            <div>
+                                <span class="font-bold">🏢 Présentiel</span>
+                                <p class="text-xs text-gray-600">À nos bureaux</p>
+                            </div>
+                        </label>
+                        <label class="flex items-center p-4 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-yellow-500 transition">
+                            <input type="radio" name="mode" value="telephone" class="mr-3" checked>
+                            <div>
+                                <span class="font-bold">📱 Téléphone</span>
+                                <p class="text-xs text-gray-600">Appel / WhatsApp</p>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="flex space-x-4">
+                    <button onclick="previousStep(1)" class="flex-1 bg-gray-300 text-gray-700 py-4 px-6 rounded-xl font-bold text-lg hover:bg-gray-400 transition">← Retour</button>
+                    <button onclick="nextStep(3)" id="confirm-slot-btn" disabled class="flex-1 gradient-gold text-white py-4 px-6 rounded-xl font-bold text-lg hover:shadow-2xl transition opacity-50 cursor-not-allowed">Suivant : Confirmer →</button>
+                </div>
+            </div>
+
+            <div id="step-3" class="step-content hidden">
+                <div class="text-center">
+                    <div class="w-24 h-24 mx-auto gradient-gold rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    
+                    <h2 class="text-3xl font-bold wanda-gold mb-4">Récapitulatif de votre rendez-vous</h2>
+                    
+                    <div class="bg-gray-50 rounded-xl p-6 mb-6 text-left">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div><p class="text-sm text-gray-600 font-medium">Nom complet</p><p class="text-lg font-bold" id="recap-nom"></p></div>
+                            <div><p class="text-sm text-gray-600 font-medium">Email</p><p class="text-lg font-bold" id="recap-email"></p></div>
+                            <div><p class="text-sm text-gray-600 font-medium">Téléphone</p><p class="text-lg font-bold" id="recap-telephone"></p></div>
+                            <div><p class="text-sm text-gray-600 font-medium">Entreprise</p><p class="text-lg font-bold" id="recap-entreprise"></p></div>
+                            <div class="md:col-span-2"><p class="text-sm text-gray-600 font-medium">Objet</p><p class="text-lg font-bold" id="recap-objet"></p></div>
+                            <div><p class="text-sm text-gray-600 font-medium">Date</p><p class="text-lg font-bold wanda-gold" id="recap-date"></p></div>
+                            <div><p class="text-sm text-gray-600 font-medium">Heure</p><p class="text-lg font-bold wanda-gold" id="recap-heure"></p></div>
+                            <div class="md:col-span-2"><p class="text-sm text-gray-600 font-medium">Mode</p><p class="text-lg font-bold" id="recap-mode"></p></div>
+                        </div>
+                    </div>
+
+                    <div class="flex space-x-4">
+                        <button onclick="previousStep(2)" class="flex-1 bg-gray-300 text-gray-700 py-4 px-6 rounded-xl font-bold text-lg hover:bg-gray-400 transition">← Modifier</button>
+                        <button onclick="confirmAppointment()" class="flex-1 gradient-gold text-white py-4 px-6 rounded-xl font-bold text-lg hover:shadow-2xl transform hover:scale-105 transition duration-300">✅ Confirmer le RDV</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="success-screen" class="step-content hidden text-center">
+                <div class="w-32 h-32 mx-auto bg-green-100 rounded-full flex items-center justify-center mb-6">
+                    <svg class="w-16 h-16 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </div>
+                
+                <h2 class="text-3xl font-bold text-green-600 mb-4">🎉 Rendez-vous confirmé !</h2>
+                
+                <div class="bg-green-50 border-2 border-green-300 rounded-xl p-6 mb-6">
+                    <p class="text-lg text-gray-800 mb-4"><strong>Merci !</strong> Votre rendez-vous a été enregistré avec succès.</p>
+                    <p class="text-gray-700">Vous recevrez un email de confirmation à <strong id="final-email"></strong> avec tous les détails.</p>
+                    <p class="text-gray-700 mt-2">Nous vous rappellerons <strong>24h avant</strong> votre rendez-vous.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                    <a href="tel:+237688847491" class="flex items-center justify-center space-x-2 bg-green-500 text-white py-4 px-6 rounded-xl hover:bg-green-600 transition font-bold">
+                        <span>📱 Nous contacter</span>
+                    </a>
+                    <a href="/" class="flex items-center justify-center space-x-2 gradient-gold text-white py-4 px-6 rounded-xl hover:shadow-2xl transition font-bold">
+                        <span>🏠 Retour à l'accueil</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="gradient-gold text-white py-8 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-lg font-medium">Wanda Success - Marketplace & Solutions Digitales</p>
+            <p class="mt-2 opacity-90">📱 +237 688 847 491 | 📧 wandasuccess237@gmail.com</p>
+        </div>
+    </footer>
+
+    <script>
+        let currentStep = 1;
+        let selectedDate = null;
+        let selectedTime = null;
+
+        function generateDates() {
+            const container = document.getElementById('date-options');
+            const today = new Date();
+            let datesAdded = 0, daysChecked = 0;
+
+            while (datesAdded < 8 && daysChecked < 30) {
+                const date = new Date(today);
+                date.setDate(today.getDate() + daysChecked + 1);
+                
+                if (date.getDay() !== 0 && date.getDay() !== 6) {
+                    const dateStr = date.toLocaleDateString('fr-FR', { weekday: 'short', day: 'numeric', month: 'short' });
+                    const btn = document.createElement('button');
+                    btn.className = 'time-slot p-4 border-2 border-gray-300 rounded-lg text-center hover:border-yellow-500 transition';
+                    btn.innerHTML = `<div class="font-bold">${dateStr}</div>`;
+                    btn.onclick = () => selectDate(date, btn);
+                    container.appendChild(btn);
+                    datesAdded++;
+                }
+                daysChecked++;
+            }
+        }
+
+        function generateTimeSlots() {
+            const container = document.getElementById('time-slots');
+            const slots = ['09:00', '10:00', '11:00', '14:00', '15:00', '16:00', '17:00'];
+            slots.forEach(time => {
+                const btn = document.createElement('button');
+                btn.className = 'time-slot p-4 border-2 border-gray-300 rounded-lg text-center hover:border-yellow-500 transition font-bold';
+                btn.textContent = time;
+                btn.onclick = () => selectTime(time, btn);
+                container.appendChild(btn);
+            });
+        }
+
+        function selectDate(date, element) {
+            document.querySelectorAll('#date-options button').forEach(btn => btn.classList.remove('selected'));
+            element.classList.add('selected');
+            selectedDate = date;
+            checkSlotSelection();
+        }
+
+        function selectTime(time, element) {
+            document.querySelectorAll('#time-slots button').forEach(btn => btn.classList.remove('selected'));
+            element.classList.add('selected');
+            selectedTime = time;
+            checkSlotSelection();
+        }
+
+        function checkSlotSelection() {
+            const btn = document.getElementById('confirm-slot-btn');
+            if (selectedDate && selectedTime) {
+                btn.disabled = false;
+                btn.classList.remove('opacity-50', 'cursor-not-allowed');
+            }
+        }
+
+        function nextStep(step) {
+            if (step === 2) {
+                const requiredFields = ['prenom', 'nom', 'email', 'telephone', 'objet'];
+                let valid = true;
+                requiredFields.forEach(field => {
+                    const input = document.getElementById(field);
+                    if (!input.value.trim()) {
+                        input.classList.add('border-red-500');
+                        valid = false;
+                    } else {
+                        input.classList.remove('border-red-500');
+                    }
+                });
+                if (!valid) {
+                    alert('Veuillez remplir tous les champs obligatoires (*)');
+                    return;
+                }
+            }
+            if (step === 3) {
+                if (!selectedDate || !selectedTime) {
+                    alert('Veuillez sélectionner une date et une heure');
+                    return;
+                }
+                updateRecap();
+            }
+            document.querySelectorAll('.step-content').forEach(el => el.classList.add('hidden'));
+            document.getElementById(`step-${step}`).classList.remove('hidden');
+            const progress = (step / 3) * 100;
+            document.getElementById('progress-bar').style.width = progress + '%';
+            currentStep = step;
+        }
+
+        function previousStep(step) {
+            nextStep(step);
+        }
+
+        function updateRecap() {
+            document.getElementById('recap-nom').textContent = document.getElementById('prenom').value + ' ' + document.getElementById('nom').value;
+            document.getElementById('recap-email').textContent = document.getElementById('email').value;
+            document.getElementById('recap-telephone').textContent = document.getElementById('telephone').value;
+            document.getElementById('recap-entreprise').textContent = document.getElementById('entreprise').value || 'Non renseignée';
+            const objetSelect = document.getElementById('objet');
+            document.getElementById('recap-objet').textContent = objetSelect.options[objetSelect.selectedIndex].text;
+            document.getElementById('recap-date').textContent = selectedDate.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+            document.getElementById('recap-heure').textContent = selectedTime;
+            const mode = document.querySelector('input[name="mode"]:checked').value;
+            const modeText = {'visio': '📹 Visioconférence', 'presentiel': '🏢 Présentiel (à nos bureaux)', 'telephone': '📱 Téléphone / WhatsApp'};
+            document.getElementById('recap-mode').textContent = modeText[mode];
+        }
+
+        function confirmAppointment() {
+            document.getElementById('final-email').textContent = document.getElementById('email').value;
+            document.getElementById('step-3').classList.add('hidden');
+            document.getElementById('success-screen').classList.remove('hidden');
+        }
+
+        generateDates();
+        generateTimeSlots();
+    </script>
+</body>
+</html>
