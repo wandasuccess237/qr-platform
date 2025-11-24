@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loummel - La Marketplace qui transforme votre business</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .gradient-gold {
+            background: linear-gradient(135deg, #C59763 0%, #785A3C 100%);
+        }
+        .animate-bounce-slow {
+            animation: bounce 3s infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+        .pulse-gold {
+            animation: pulse-gold 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse-gold {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: .7;
+            }
+        }
+    </style>
+</head>
+<body class="bg-white">
+    
+    <!-- Hero Section -->
+    <section class="gradient-gold text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-0 left-0 w-64 h-64 bg-white rounded-full mix-blend-overlay filter blur-3xl"></div>
+            <div class="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full mix-blend-overlay filter blur-3xl"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 py-16 md:py-24 relative z-10">
+            <div class="max-w-4xl mx-auto text-center">
+                <div class="inline-block mb-6">
+                    <span class="bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-semibold">
+                        🎉 Offre Spéciale Foire - Seulement 50 places !
+                    </span>
+                </div>
+                
+                <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+                    Développez votre business avec
+                    <span class="block mt-2 text-yellow-200">Loummel</span>
+                </h1>
+                
+                <p class="text-xl md:text-2xl mb-8 text-white/90">
+                    La marketplace qui connecte entrepreneurs, fournisseurs et clients en Afrique
+                </p>
+                
+                <div class="flex flex-col md:flex-row gap-4 justify-center mb-8">
+                    <a href="#signup" class="bg-white text-gray-800 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition transform hover:scale-105 inline-flex items-center justify-center">
+                        🚀 Rejoindre Loummel Gratuitement
+                    </a>
+                    <a href="#demo" class="border-2 border-white text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-white/10 transition inline-flex items-center justify-center">
+                        ▶️ Voir la Démo
+                    </a>
+                </div>
+                
+                <div class="flex flex-wrap justify-center gap-8 text-sm">
+                    <div class="flex items-center">
+                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path>
+                            <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm9.707 5.707a1 1 0 00-1.414-1.414L9 12.586l-1.293-1.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                        </svg>
+                        100% Gratuit
+                    </div>
+                    <div class="flex items-center">
+                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"></path>
+                        </svg>
+                        Inscription en 2 min
+                    </div>
+                    <div class="flex items-center">
+                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M5 2a1 1 0 011 1v1h1a1 1 0 010 2H6v1a1 1 0 01-2 0V6H3a1 1 0 010-2h1V3a1 1 0 011-1zm0 10a1 1 0 011 1v1h1a1 1 0 110 2H6v1a1 1 0 11-2 0v-1H3a1 1 0 110-2h1v-1a1 1 0 011-1zM12 2a1 1 0 01.967.744L14.146 7.2 17.5 9.134a1 1 0 010 1.732l-3.354 1.935-1.18 4.455a1 1 0 01-1.933 0L9.854 12.8 6.5 10.866a1 1 0 010-1.732l3.354-1.935 1.18-4.455A1 1 0 0112 2z" clip-rule="evenodd"></path>
+                        </svg>
+                        Accès immédiat
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Wave separator -->
+        <div class="absolute bottom-0 left-0 right-0">
+            <svg viewBox="0 0 1200 120" preserveAspectRatio="none" class="w-full h-12 md:h-16">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="#ffffff"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Live Counter -->
+    <section class="py-4 bg-yellow-50 border-b-2 border-yellow-200">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center justify-center gap-4 text-center">
+                <div class="flex items-center">
+                    <span class="pulse-gold inline-block w-3 h-3 bg-green-500 rounded-full mr-2"></span>
+                    <span class="font-semibold text-gray-700">En direct :</span>
+                </div>
+                <div class="text-2xl font-bold text-yellow-700">
+                    <span id="signup-counter">347</span> entrepreneurs déjà inscrits !
+                </div>
+                <div class="text-sm text-gray-600">
+                    ⏰ Plus que <span id="spots-left" class="font-bold text-red-600">3</span> places disponibles
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="py-16 md:py-24">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold text-gray-800 mb-4">
+                    Pourquoi choisir Loummel ?
+                </h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    Une plateforme complète pour faire croître votre activité
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Benefit 1 -->
+                <div class="text-center p-8 rounded-2xl hover:shadow-xl transition border-2 border-gray-100">
+                    <div class="w-20 h-20 gradient-gold rounded-2xl flex items-center justify-center mx-auto mb-6 float-animation">
+                        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Visibilité Maximale</h3>
+                    <p class="text-gray-600">
+                        Touchez des milliers de clients potentiels en Afrique centrale et au-delà. Augmentez votre chiffre d'affaires de 40% en moyenne.
+                    </p>
+                </div>
+
+                <!-- Benefit 2 -->
+                <div class="text-center p-8 rounded-2xl hover:shadow-xl transition border-2 border-gray-100">
+                    <div class="w-20 h-20 gradient-gold rounded-2xl flex items-center justify-center mx-auto mb-6 float-animation" style="animation-delay: 0.2s;">
+                        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Paiements Sécurisés</h3>
+                    <p class="text-gray-600">
+                        Transactions 100% sécurisées avec garantie. Mobile Money, cartes bancaires, et virements acceptés.
+                    </p>
+                </div>
+
+                <!-- Benefit 3 -->
+                <div class="text-center p-8 rounded-2xl hover:shadow-xl transition border-2 border-gray-100">
+                    <div class="w-20 h-20 gradient-gold rounded-2xl flex items-center justify-center mx-auto mb-6 float-animation" style="animation-delay: 0.4s;">
+                        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Gestion Simplifiée</h3>
+                    <p class="text-gray-600">
+                        Interface intuitive, gestion de stock automatisée, statistiques en temps réel. Tout ce qu'il vous faut en un seul endroit.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Additional benefits -->
+            <div class="grid md:grid-cols-4 gap-6 max-w-5xl mx-auto mt-12">
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-yellow-700 mb-2">24/7</div>
+                    <p class="text-gray-600">Support client</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-yellow-700 mb-2">0%</div>
+                    <p class="text-gray-600">Commission pendant 3 mois</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-yellow-700 mb-2">+1000</div>
+                    <p class="text-gray-600">Vendeurs actifs</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-yellow-700 mb-2">4.8⭐</div>
+                    <p class="text-gray-600">Note moyenne</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Video Section -->
+    <section id="demo" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl md:text-5xl font-bold text-gray-800 mb-4">
+                    Découvrez Loummel en vidéo
+                </h2>
+                <p class="text-xl text-gray-600 mb-8">
+                    2 minutes pour comprendre comment révolutionner votre business
+                </p>
+                
+                <div class="relative rounded-2xl overflow-hidden shadow-2xl">
+                    <div class="aspect-video bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center">
+                        <button class="bg-white w-20 h-20 rounded-full flex items-center justify-center hover:scale-110 transition transform">
+                            <svg class="w-8 h-8 text-gray-800 ml-1" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Screenshots Section -->
+    <section class="py-16 md:py-24">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold text-gray-800 mb-4">
+                    Une interface pensée pour vous
+                </h2>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <div class="rounded-xl overflow-hidden shadow-lg">
+                    <div class="aspect-[3/4] bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white">
+                        <div class="text-center p-8">
+                            <div class="text-6xl mb-4">📊</div>
+                            <p class="text-lg font-semibold">Tableau de Bord</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="rounded-xl overflow-hidden shadow-lg">
+                    <div class="aspect-[3/4] bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center text-white">
+                        <div class="text-center p-8">
+                            <div class="text-6xl mb-4">🛒</div>
+                            <p class="text-lg font-semibold">Gestion Produits</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="rounded-xl overflow-hidden shadow-lg">
+                    <div class="aspect-[3/4] bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center text-white">
+                        <div class="text-center p-8">
+                            <div class="text-6xl mb-4">💰</div>
+                            <p class="text-lg font-semibold">Suivi des Ventes</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-16 bg-gradient-to-br from-yellow-50 to-orange-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold text-gray-800 mb-4">
+                    Ils ont rejoint Loummel
+                </h2>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Testimonial 1 -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full gradient-gold mr-4"></div>
+                        <div>
+                            <div class="font-bold text-gray-800">Amadou K.</div>
+                            <div class="text-sm text-gray-500">Vendeur de mode</div>
+                        </div>
+                    </div>
+                    <div class="text-yellow-500 mb-3">⭐⭐⭐⭐⭐</div>
+                    <p class="text-gray-600">
+                        "Mes ventes ont triplé en 2 mois ! Loummel m'a permis d'atteindre des clients que je n'aurais jamais pu toucher autrement."
+                    </p>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full gradient-gold mr-4"></div>
+                        <div>
+                            <div class="font-bold text-gray-800">Marie N.</div>
+                            <div class="text-sm text-gray-500">Artisane</div>
+                        </div>
+                    </div>
+                    <div class="text-yellow-500 mb-3">⭐⭐⭐⭐⭐</div>
+                    <p class="text-gray-600">
+                        "Interface super simple ! J'ai pu créer ma boutique en moins de 10 minutes. Le support client est réactif et efficace."
+                    </p>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full gradient-gold mr-4"></div>
+                        <div>
+                            <div class="font-bold text-gray-800">Jean-Paul M.</div>
+                            <div class="text-sm text-gray-500">Grossiste</div>
+                        </div>
+                    </div>
+                    <div class="text-yellow-500 mb-3">⭐⭐⭐⭐⭐</div>
+                    <p class="text-gray-600">
+                        "Les paiements sont rapides et sécurisés. Je recommande Loummel à tous les entrepreneurs qui veulent développer leur activité."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-16 md:py-24">
+        <div class="container mx-auto px-4 max-w-4xl">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold text-gray-800 mb-4">
+                    Questions Fréquentes
+                </h2>
+            </div>
+            
+            <div class="space-y-4">
+                <details class="group bg-white rounded-xl shadow-md">
+                    <summary class="flex items-center justify-between p-6 cursor-pointer font-semibold text-gray-800">
+                        <span>💰 Loummel est-il vraiment gratuit ?</span>
+                        <svg class="w-5 h-5 transition group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </summary>
+                    <div class="px-6 pb-6 text-gray-600">
+                        Oui ! L'inscription est 100% gratuite. En tant que visiteur de la foire, vous bénéficiez en plus de 3 mois sans commission sur vos ventes (offre limitée).
+                    </div>
+                </details>
+
+                <details class="group bg-white rounded-xl shadow-md">
+                    <summary class="flex items-center justify-between p-6 cursor-pointer font-semibold text-gray-800">
+                        <span>⏱ Combien de temps prend l'inscription ?</span>
+                        <svg class="w-5 h-5 transition group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </summary>
+                    <div class="px-6 pb-6 text-gray-600">
+                        Moins de 2 minutes ! Il vous suffit de renseigner vos informations de base et vous pouvez commencer à vendre immédiatement.
+                    </div>
+                </details>
+
+                <details class="group bg-white rounded-xl shadow-md">
+                    <summary class="flex items-center justify-between p-6 cursor-pointer font-semibold text-gray-800">
+                        <span>🔒 Mes paiements sont-ils sécurisés ?</span>
+                        <svg class="w-5 h-5 transition group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </summary>
+                    <div class="px-6 pb-6 text-gray-600">
+                        Absolument ! Nous utilisons les dernières technologies de cryptage et travaillons avec les opérateurs de paiement les plus fiables d'Afrique.
+                    </div>
+                </details>
+
+                <details class="group bg-white rounded-xl shadow-md">
+                    <summary class="flex items-center justify-between p-6 cursor-pointer font-semibold text-gray-800">
+                        <span>📦 Quels types de produits puis-je vendre ?</span>
+                        <svg class="w-5 h-5 transition group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </summary>
+                    <div class="px-6 pb-6 text-gray-600">
+                        Presque tout ! Mode, électronique, alimentation, artisanat, services... Tant que c'est légal, vous pouvez le vendre sur Loummel.
+                    </div>
+                </details>
+
+                <details class="group bg-white rounded-xl shadow-md">
+                    <summary class="flex items-center justify-between p-6 cursor-pointer font-semibold text-gray-800">
+                        <span>🎓 Proposez-vous une formation ?</span>
+                        <svg class="w-5 h-5 transition group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </summary>
+                    <div class="px-6 pb-6 text-gray-600">
+                        Oui ! Nous proposons des tutoriels vidéo, des guides pratiques et un support client dédié pour vous accompagner dans votre réussite.
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section id="signup" class="py-16 md:py-24 gradient-gold relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-0 left-0 w-96 h-96 bg-white rounded-full mix-blend-overlay filter blur-3xl"></div>
+            <div class="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full mix-blend-overlay filter blur-3xl"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="max-w-3xl mx-auto">
+                <div class="bg-white rounded-3xl shadow-2xl p-8 md:p-12">
+                    <div class="text-center mb-8">
+                        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+                            Rejoignez Loummel Maintenant !
+                        </h2>
+                        <p class="text-xl text-gray-600 mb-6">
+                            Profitez de l'offre exclusive foire : <span class="font-bold text-yellow-700">3 mois gratuits + badge Early Adopter</span>
+                        </p>
+                        
+                        <div class="bg-red-50 border-2 border-red-200 rounded-lg p-4 mb-6">
+                            <p class="text-red-700 font-semibold">
+                                ⏰ Offre valable uniquement pendant la durée de la foire !
+                            </p>
+                        </div>
+                    </div>
+
+                    <form id="signup-form" class="space-y-4">
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <input type="text" name="name" required placeholder="Votre nom complet" 
+                                   class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-yellow-500 focus:outline-none">
+                            <input type="email" name="email" required placeholder="Votre email" 
+                                   class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-yellow-500 focus:outline-none">
+                        </div>
+                        <input type="tel" name="phone" required placeholder="Votre téléphone" 
+                               class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-yellow-500 focus:outline-none">
+                        <input type="text" name="business" placeholder="Nom de votre entreprise (optionnel)" 
+                               class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-yellow-500 focus:outline-none">
+                        
+                        <label class="flex items-start">
+                            <input type="checkbox" name="terms" required class="w-5 h-5 text-yellow-600 rounded mt-1 mr-3">
+                            <span class="text-sm text-gray-600">
+                                J'accepte les <a href="#" class="text-yellow-700 underline">conditions d'utilisation</a> et la <a href="#" class="text-yellow-700 underline">politique de confidentialité</a>
+                            </span>
+                        </label>
+
+                        <button type="submit" 
+                                class="w-full gradient-gold text-white py-4 rounded-lg font-bold text-lg hover:opacity-90 transition transform hover:scale-105">
+                            🎯 Créer Mon Compte Gratuitement
+                        </button>
+                    </form>
+
+                    <p class="text-center text-sm text-gray-500 mt-6">
+                        🔒 Vos données sont protégées et ne seront jamais partagées
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h4 class="text-xl font-bold mb-4">Loummel</h4>
+                    <p class="text-gray-400">La marketplace qui transforme votre business en Afrique.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Produit</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white">Fonctionnalités</a></li>
+                        <li><a href="#" class="hover:text-white">Tarifs</a></li>
+                        <li><a href="#" class="hover:text-white">Tutoriels</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Entreprise</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white">À propos</a></li>
+                        <li><a href="#" class="hover:text-white">Blog</a></li>
+                        <li><a href="#" class="hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Suivez-nous</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20">📘</a>
+                        <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20">📷</a>
+                        <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20">🐦</a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-400">
+                <p>© 2025 Loummel - Une initiative de NOOAXIS & Wanda Success. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Counter animation
+        let counter = 347;
+        let spotsLeft = 3;
+        
+        setInterval(() => {
+            if (Math.random() > 0.7) {
+                counter++;
+                spotsLeft = Math.max(0, 50 - (counter - 347));
+                document.getElementById('signup-counter').textContent = counter;
+                document.getElementById('spots-left').textContent = spotsLeft;
+            }
+        }, 3000);
+
+        // Signup form
+        document.getElementById('signup-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData);
+            data.timestamp = new Date().toISOString();
+            data.source = 'Landing Page Loummel';
+            data.offer = 'Foire Special - 3 mois gratuits';
+            
+            console.log('Loummel Signup:', data);
+            
+            // Show success
+            alert('🎉 Bienvenue sur Loummel !\n\nVotre compte a été créé avec succès.\nVous recevrez un email de confirmation dans quelques instants avec vos accès.');
+            
+            // In real implementation:
+            // fetch('/api/loummel/signup', {
+            //     method: 'POST',
+            //     headers: { 'Content-Type': 'application/json' },
+            //     body: JSON.stringify(data)
+            // });
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
